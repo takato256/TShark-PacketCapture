@@ -1,0 +1,11 @@
+C:\Users\nakaya39\Desktop\SecHack365\C#練習\tshark_PacketCapture\tshark_PacketCapture\bin\Debug\tshark_PacketCapture.exe.config
+C:\Users\nakaya39\Desktop\SecHack365\C#練習\tshark_PacketCapture\tshark_PacketCapture\bin\Debug\tshark_PacketCapture.exe
+C:\Users\nakaya39\Desktop\SecHack365\C#練習\tshark_PacketCapture\tshark_PacketCapture\bin\Debug\tshark_PacketCapture.pdb
+C:\Users\nakaya39\Desktop\SecHack365\C#練習\tshark_PacketCapture\tshark_PacketCapture\obj\Debug\tshark_PacketCapture.csproj.AssemblyReference.cache
+C:\Users\nakaya39\Desktop\SecHack365\C#練習\tshark_PacketCapture\tshark_PacketCapture\obj\Debug\tshark_PacketCapture.csproj.SuggestedBindingRedirects.cache
+C:\Users\nakaya39\Desktop\SecHack365\C#練習\tshark_PacketCapture\tshark_PacketCapture\obj\Debug\tshark_PacketCapture.Form1.resources
+C:\Users\nakaya39\Desktop\SecHack365\C#練習\tshark_PacketCapture\tshark_PacketCapture\obj\Debug\tshark_PacketCapture.Properties.Resources.resources
+C:\Users\nakaya39\Desktop\SecHack365\C#練習\tshark_PacketCapture\tshark_PacketCapture\obj\Debug\tshark_PacketCapture.csproj.GenerateResource.cache
+C:\Users\nakaya39\Desktop\SecHack365\C#練習\tshark_PacketCapture\tshark_PacketCapture\obj\Debug\tshark_PacketCapture.csproj.CoreCompileInputs.cache
+C:\Users\nakaya39\Desktop\SecHack365\C#練習\tshark_PacketCapture\tshark_PacketCapture\obj\Debug\tshark_PacketCapture.exe
+C:\Users\nakaya39\Desktop\SecHack365\C#練習\tshark_PacketCapture\tshark_PacketCapture\obj\Debug\tshark_PacketCapture.pdb
