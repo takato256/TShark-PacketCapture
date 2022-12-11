@@ -16,6 +16,9 @@ namespace tshark_PacketCapture
         // プロセス tshark インターフェース一覧を表示
         Process processTsInterface = null;
 
+        // プロセス tshark パケットキャプチャを表示
+        Process processTsCap = null;
+
         public Form1()
         {
             InitializeComponent();
@@ -58,7 +61,7 @@ namespace tshark_PacketCapture
         void dataReceivedTsInterface(object sender, DataReceivedEventArgs e)
         {
             string packetText = e.Data;
-            if(packetText != null && packetText.Length > 0)
+            if (packetText != null && packetText.Length > 0)
             {
                 PrintTextBoxByThread(packetText, textBox1);
             }
@@ -77,7 +80,7 @@ namespace tshark_PacketCapture
         // テキストボックスに出力
         private void PrintTextBox(string msg, TextBox tb)
         {
-            if(string.IsNullOrEmpty(tb.Text))
+            if (string.IsNullOrEmpty(tb.Text))
             {
                 tb.Text = msg;
             }
@@ -98,6 +101,66 @@ namespace tshark_PacketCapture
             this.Invoke((MethodInvoker)(() => PrintTextBox(msg, tb)));
         }
 
+
+        // パケットキャプチャ ボタンクリック
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // 必須チェック
+            if (string.IsNullOrEmpty(textBox2.Text))
+            {
+                MessageBox.Show("インターフェース番号を指定してください");
+                return;
+            }
+
+            // コマンド
+            string executeCommand = "C:\\Program Files\\Wireshark\\tshark.exe";
+
+            // コマンド引数
+            string args = String.Format("-i {0} -l", textBox2.Text);
+
+            // プロセスを起動
+            processTsCap = new Process();
+            ProcessStartInfo processStartInfo = new ProcessStartInfo(executeCommand, args);
+            processStartInfo.CreateNoWindow = true;
+            processStartInfo.UseShellExecute = false;
+            processStartInfo.RedirectStandardOutput = true;
+            processStartInfo.RedirectStandardError = true;
+
+            // 文字化け防止に、文字コードを指定する
+            processStartInfo.StandardErrorEncoding = Encoding.UTF8;
+            processStartInfo.StandardOutputEncoding = Encoding.UTF8;
+
+            // 起動
+            processTsCap = Process.Start(processStartInfo);
+
+            // 受信イベント
+            processTsCap.OutputDataReceived += dataReceivedTsCap;
+            processTsCap.ErrorDataReceived += errReceivedTsCap;
+
+            processTsCap.BeginErrorReadLine();
+            processTsCap.BeginOutputReadLine();
+        }
+
+        // パケットキャプチャを表示　出力
+        void dataReceivedTsCap(object sender, DataReceivedEventArgs e)
+        {
+            string packetText = e.Data;
+            if(packetText != null && packetText.Length > 0)
+            {
+                PrintTextBoxByThread(packetText, textBox3);
+            }
+        }
+
+        // パケットキャプチャを表示　エラー
+        void errReceivedTsCap(object sender, DataReceivedEventArgs e)
+        {
+            string packetText = e.Data;
+            if(packetText != null && packetText.Length > 0 )
+            {
+                PrintTextBoxByThread("ERR:" + packetText, textBox3);
+            }
+        }
+
         // フォームクローズ
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -106,6 +169,13 @@ namespace tshark_PacketCapture
                 // プロセス終了
                 processTsInterface.Kill();
             }
+
+            if(processTsCap != null && !processTsCap.HasExited)
+            {
+                // プロセス終了
+                processTsCap.Kill();
+            }
         }
+
     }
 }
